@@ -2,7 +2,6 @@
 
 echo "start blogservice-db-test"
 docker run -d -e POSTGRES_PASSWORD=postgres \
--e DB_NAME=blogservice \
 --name blogservice-db-test postgres
 
 echo "wait for postgres to start"
@@ -38,7 +37,7 @@ docker run -p 8081:8080 -p 9991:9990 \
 -d --name blogservice-test --link blogservice-db-test:blogservice-db wildfly
 
 echo " wait for wildfly to start"
-while [ $(curl --write-out %{http_code} --silent --output /dev/null http://localhost:8081/blogservice/resources/entries) -ne "200" ]
+while [ $(curl --write-out %{http_code} --silent --output /dev/null http://104.167.115.228:8081/blogservice/resources/entries) -ne "200" ]
 do
  echo "$(date) - still trying"
  sleep 1
