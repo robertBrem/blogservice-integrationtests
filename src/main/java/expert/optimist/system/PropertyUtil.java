@@ -1,7 +1,10 @@
 package expert.optimist.system;
 
-public enum PropertyUtil {
-    INSTANCE;
+import org.json.simple.JSONObject;
+
+public class PropertyUtil {
+
+    private JSONObject service;
 
     public enum KNOWN_KEYS {
         REMOTE_USER("remote_user"),
@@ -27,5 +30,66 @@ public enum PropertyUtil {
         public String getKey() {
             return key;
         }
+
+        @Override
+        public String toString() {
+            return getKey();
+        }
+    }
+
+    public PropertyUtil(JSONObject service) {
+        this.service = service;
+    }
+
+    public String getRemoteUser() {
+        return service.get(KNOWN_KEYS.REMOTE_USER.getKey()).toString();
+    }
+
+    public String getRemoteAddress() {
+        return service.get(KNOWN_KEYS.REMOTE_ADDRESS.getKey()).toString();
+    }
+
+    public String getRemotePort() {
+        return service.get(KNOWN_KEYS.REMOTE_PORT.getKey()).toString();
+    }
+
+    public String getRemoteManagementPort() {
+        return service.get(KNOWN_KEYS.REMOTE_MANAGEMENT_PORT.getKey()).toString();
+    }
+
+    public String getArtifactUrl() {
+        return service.get(KNOWN_KEYS.ARTIFACT_URL.getKey()).toString();
+    }
+
+    public String getBaseUrl() {
+        return service.get(KNOWN_KEYS.BASE_URL.getKey()).toString();
+    }
+
+    public String getDatabaseName() {
+        return service.get(KNOWN_KEYS.DATABASE_NAME.getKey()).toString();
+    }
+
+    public String getDatasourceName() {
+        return service.get(KNOWN_KEYS.DATASOURCE_NAME.getKey()).toString();
+    }
+
+    public String getDbDriverName() {
+        return service.get(KNOWN_KEYS.DB_DRIVER_NAME.getKey()).toString();
+    }
+
+    public String getDbDriverPath() {
+        return service.get(KNOWN_KEYS.DB_DRIVER_PATH.getKey()).toString();
+    }
+
+    public String getJndiName() {
+        return service.get(KNOWN_KEYS.JNDI_NAME.getKey()).toString();
+    }
+
+    public String getPostgresPassword() {
+        return service.get(KNOWN_KEYS.POSTGRES_PASSWORD.getKey()).toString();
+    }
+
+    public String getPostgresUsername() {
+        return service.get(KNOWN_KEYS.POSTGRES_USERNAME.getKey()).toString();
     }
 }
